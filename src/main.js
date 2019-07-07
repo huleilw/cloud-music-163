@@ -7,6 +7,15 @@ import VueAxios from 'vue-axios'
 import 'amfe-flexible';
 import QS from 'qs'
 
+import { Search, Icon } from 'vant';
+
+Vue.use(Search).use(Icon)
+
+//重置样式
+import '@/assets/css/reset.css'
+
+//import '@/assets/js/rem.js'
+
 Vue.prototype.$axios = axios;
 Vue.prototype.qs = QS;
 Vue.config.productionTip = false
