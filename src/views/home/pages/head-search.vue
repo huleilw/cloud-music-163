@@ -24,14 +24,14 @@
                 :key="index"
                 >
                     <i class="hot-item-rank">{{index+1}}</i>
-                    {{item.first}}</li>
+                {{item.first}}</li>
             </ol>
         </div>
     </div>
 </template>
 <script>
 import {musicIndex} from '@/const/api'
-
+import {HOME} from '@/const/path'
 const {searchHot} = musicIndex
 export default {
     name:'Search',
@@ -53,7 +53,9 @@ export default {
         onSearch(){
 
         },
-        onCancel(){}
+        onCancel(){
+            this.$router.push({path:HOME})
+        }
     },
 }
 </script>
@@ -62,8 +64,8 @@ export default {
     .search-header{
         display:grid;
         grid-template-columns: auto 20%;
-        height:50px;
-        line-height: 50px;
+        height:40px;
+        line-height: 40px;
         .search-header-user{
             text-align: center;
             .user-icon{

@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-
+import {GO_TO_SEARCH} from '@/const/path'
 
 export default {
     name:"Head",
@@ -25,7 +25,7 @@ export default {
     },
     methods: {
        goToSearch(){
-           this.$router.push({path:'/pages/head-search.vue'})
+           this.$router.push({path:GO_TO_SEARCH})
        }
     },
 }

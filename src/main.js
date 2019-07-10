@@ -14,7 +14,7 @@ Vue.use(Search).use(Icon)
 //重置样式
 import '@/assets/css/reset.css'
 
-//import '@/assets/js/rem.js'
+import '@/assets/js/rem.js'
 
 Vue.prototype.$axios = axios;
 Vue.prototype.qs = QS;
