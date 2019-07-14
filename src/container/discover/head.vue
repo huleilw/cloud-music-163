@@ -4,8 +4,9 @@
         <span class="head-item"
         @click="goToSearch"
         >
-            <van-search placeholder="请输入搜索关键词" 
+            <van-search placeholder="请输入" 
             v-model="value" 
+            shape="round"
             class="head-item-search"
             />
         </span>
@@ -34,18 +35,16 @@ export default {
     .head{
         display:grid;
         grid-template-columns: 20% auto 20%;
-        height:40px;
-        line-height: 40px;
+        height:1rem;
+        line-height: 1rem;
         text-align: center;
         .head-item{
-            font-size: 14px;
-            .head-item-search{
-                padding:0;
-                margin-top:6px;
-                height:28px;
+            font-size: 0.36rem;
+            .van-search{
+                padding:0.1rem 0 0 0;
                 .van-search__content{
-                     background:rgba(#ccc,0.4);
-                     border-radius: 15px 15px;
+                    height: 0.8rem;
+                    background-color: rgba(#ccc,0.5);
                 }
             }
         }
