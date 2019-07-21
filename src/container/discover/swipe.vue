@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import { Swipe, SwipeItem,Image } from 'vant';
+import { Swipe, SwipeItem} from 'vant';
 
 import {musicIndex} from '@/const/api';
 import {BANNER_DETAIL} from '@/const/path'
@@ -26,7 +26,6 @@ export default {
     components:{
         [Swipe.name]:Swipe,
         [SwipeItem.name]:SwipeItem,
-        [Image.name]:Image
     },
     data() {
     return {
@@ -50,8 +49,8 @@ export default {
 </script>
 <style lang="less">
 .swipe{
+    text-align: center;
     .swipe-image{
-        width:94%;
         height:3.6rem;
         margin: 0.26rem;
         border-radius: 0.18rem 0.18rem;

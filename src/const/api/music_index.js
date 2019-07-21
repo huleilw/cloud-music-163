@@ -4,3 +4,4 @@ export const search = BASIC_URL + '/search'
 export const searchHot = BASIC_URL + '/search/hot'
 export const bannerImag = num => BASIC_URL + `/banner/?type=${num}`
 export const ralateMusic = value => BASIC_URL +`/search/multimatch?keywords= ${value}`
+export const recommendMusic = BASIC_URL + '/personalized'
