@@ -7,6 +7,7 @@ import Video from '@/views/video'
 import Friend from '@/views/friend'
 import My from '@/views/my'
 import Account from '@/views/account'
+import Play from '@/container/play/index'
 
 Vue.use(Router)
 
@@ -44,10 +45,11 @@ export default new Router({
             name: 'HeadSearch',
             component: HeadSearch
         },
+        
         {
-            path: '/discover/banner-detail',
-            name: 'BannerDetail',
-            component: BannerDetail
+            path: '/play',
+            name: 'Play',
+            component: Play
         },
     ]
 })

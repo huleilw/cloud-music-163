@@ -10,11 +10,11 @@
             class="head-item-search"
             />
         </span>
-        <span class="head-item">播放</span>
+        <span class="head-item" @click="goToPlay">播放</span>
     </div>
 </template>
 <script>
-import {GO_TO_SEARCH} from '@/const/path'
+import {GO_TO_SEARCH,GO_TO_PLAy} from '@/const/path'
 
 export default {
     name:"Head",
@@ -27,6 +27,9 @@ export default {
     methods: {
        goToSearch(){
            this.$router.push({path:GO_TO_SEARCH})
+       },
+       goToPlay(){
+           this.$router.push({path:GO_TO_PLAy})
        }
     },
 }
