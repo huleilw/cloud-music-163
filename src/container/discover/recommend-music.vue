@@ -30,6 +30,7 @@
 <script>
 import Vclamp from '@/mixins/v-clamp'
 import {musicIndex} from '@/const/api'
+import { mapActions, mapState } from 'vuex';
 
 const {recommendMusic} = musicIndex
 
@@ -42,6 +43,7 @@ const {recommendMusic} = musicIndex
             }
         },
         computed: {
+            ...mapState(['songSheetId']),
             recommendMusicData(){
                 return this.recommendMusicList.slice(0,6)
             }
@@ -50,9 +52,10 @@ const {recommendMusic} = musicIndex
             this.getRecommendMusic()
         },
         methods: {
+            ...mapActions(['fetchRecommendMusic']),
             getRecommendMusic() {
-                this.axios.get(recommendMusic).then(resp=>{
-                    this.recommendMusicList = resp.data.result
+                this.fetchRecommendMusic().then(data=>{
+                    this.recommendMusicList = data
                 })
             }
         },

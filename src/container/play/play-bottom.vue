@@ -10,37 +10,86 @@
         <div class="controller">
             <p class="playModeBtn " @click="changePlayState"
             >
+            <van-icon name="replay" v-if="playState==='all'" />
+            <van-icon name="info-o"  v-if="playState === 'once'"/>
+            <van-icon name="exchange" v-if="playState === 'random'" />
             </p>
             <ul>
-                <li class=""></li>
-                <li class="" @click="pause_play"
-                    
+                <li class=""><van-icon name="arrow-left" /></li>
+                <li class="" @click="pause_play"  
                 >
+                <van-icon :name="[isPlay?'pause-circle-o':'play-circle-o']" />
                 </li>
-                <li class=""></li>
+                <li class=""><van-icon name="arrow" /></li>
             </ul>
-            <p class="playListBtn " @click="isShowPlayListBtn"></p>
+            
+            <p class="playListBtn " @click="isShowPlayListBtn">
+                <van-icon name="bars" />
+            </p>
+            <van-popup
+                v-model="show"
+                round
+                position="bottom"
+                :style="{ height: '40%' }"
+            >
+            <span class="cancel" @click="hiddenPopup">取消</span>
+            </van-popup>
         </div>
     </div>
 </template>
 
 <script>
+import {mapState,mapActions} from 'vuex'
+import {Popup } from 'vant'
     export default {
         name:"PlayBottom",
+        components:{
+            [Popup.name]:Popup
+        },
         data() {
             return {
-              
+              isPlay:true,
+              playState:'all',
+              show:false,
+              datalist:[]
             }
         },
+        computed: {
+            ...mapState(['songSheetId']),
+        },
+        async mounted() {
+            const data = await this.fetchPlaylistDetail(this.songSheetId)
+            this.datalist = data
+        },
         methods: {
+            ...mapActions(['fetchPlaylistDetail','fetchMusic']),
             changePlayState() {
-                
+                 
+                const id = this.datalist.map(item=>item.id).toString()
+                this.fetchMusic(id).then(resp=>{
+                    console.log(resp);
+                })
+                console.log(id);
+                 //点击切换播放模式
+                if(this.playState === 'all'){
+                    this.playState = 'random';
+                }else if(this.playState === 'random'){
+                    this.playState = 'once';
+                }else if(this.playState === 'once'){
+                    this.playState = 'all';
+                }
             },
             pause_play(){
-
+                this.isPlay = !this.isPlay
+                this.$nextTick(()=>{
+                    console.log(this.$refs.audio)
+                })
             },
             isShowPlayListBtn(){
-
+                this.show = true
+            },
+            hiddenPopup(){
+                this.show = false
             }
         },
     }
@@ -48,6 +97,8 @@
 
 <style lang="less" >
 .play-bottom{
+    background: #ccc;
+    z-index: 2;
     position: relative;
     bottom:0px;
     .progressBar{
@@ -67,7 +118,7 @@
             line-height: 1.2rem;
             text-align:left;}
         p.range{
-            width: 76%;
+            width: 70%;
             padding:0 3%;
             margin:0.6rem auto;
             span.duration{
@@ -97,6 +148,12 @@
             li{float: left;width: 33.333%;font-size:1.07rem;}
             li.icon-bofang, li.icon-pause-20{font-size:1.33rem;}
         }
+    }
+    .cancel{
+        color:#000;
+        position: relative;
+        font-size: 0.4rem;
+        bottom:-5.6rem;
     }
 }
 </style>

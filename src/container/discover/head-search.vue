@@ -42,7 +42,7 @@
 <script>
 import {musicIndex} from '@/const/api'
 import {DISCOVER} from '@/const/path'
-const {searchHot,ralateMusic} = musicIndex
+const {searchHot,relateMusic} = musicIndex
 export default {
     name:'Search',
     data() {
@@ -74,7 +74,7 @@ export default {
 
         },
         getRelateMusicList(val){
-            this.axios.get(ralateMusic(val)).then(resp=>{
+            this.axios.get(relateMusic(val)).then(resp=>{
                 console.log(resp);
             })
         },

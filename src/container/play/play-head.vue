@@ -7,9 +7,9 @@
                 :delay="delay"
                 class="music-name-detail"
             >
-                通知内容通知内容通知内容通知内容通知内容通知内容
+                {{musicName}}
                 </van-notice-bar>
-                <i class="music-singer" @click="goSingerDetail">李现<van-icon name="arrow" /></i>
+                <i class="music-singer" @click="goSingerDetail">{{singer}}<van-icon name="arrow" /></i>
             </span>
             <span class="head-share-icon" @click="showPopup">
                 <van-icon name="share" />
@@ -26,6 +26,7 @@
 </template>
 <script>
 import { NoticeBar,Popup } from 'vant'
+import { mapState } from 'vuex';
     export default {
         name:'PlayIndex',
         components:{
@@ -35,7 +36,25 @@ import { NoticeBar,Popup } from 'vant'
         data() {
             return {
                 delay: 2,
-                show:false
+                show:false,
+                singer:'',
+                musicName:''
+            }
+        },
+        computed: {
+            ...mapState(['playlistDetail'])
+        },
+        watch: {
+            playlistDetail:{
+                handler(val){
+                    if (val) {
+                       this.musicName =  val[0].al.name
+                        val[0].ar.map(it=>{
+                            this.singer = it.name
+                        })
+                    }
+                },
+                
             }
         },
         methods: {
