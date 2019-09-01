@@ -7,7 +7,7 @@
         <van-row class="recommend-music-list">
             <van-col span="8" 
                 class="recommend-music-item"
-                v-for="item in recommendMusicData"
+                v-for="item in recommendMusicList"
                 :key="item.id"
             >
                 <div class="item-image-box">
@@ -15,6 +15,7 @@
                         class="item-image"
                         fit="cover"
                         :src="item.picUrl"
+                        @click="goToMusicList(item)"
                     />
                     <i class="image-play-icon">
                         <van-icon name="play-circle-o" />
@@ -30,7 +31,8 @@
 <script>
 import Vclamp from '@/mixins/v-clamp'
 import {musicIndex} from '@/const/api'
-import { mapActions, mapState } from 'vuex';
+import {MUSIC_LIST} from '@/const/path'
+import { mapActions } from 'vuex';
 
 const {recommendMusic} = musicIndex
 
@@ -42,12 +44,6 @@ const {recommendMusic} = musicIndex
                 recommendMusicList:[]
             }
         },
-        computed: {
-            ...mapState(['songSheetId']),
-            recommendMusicData(){
-                return this.recommendMusicList.slice(0,6)
-            }
-        },
         mounted() {
             this.getRecommendMusic()
         },
@@ -56,6 +52,13 @@ const {recommendMusic} = musicIndex
             getRecommendMusic() {
                 this.fetchRecommendMusic().then(data=>{
                     this.recommendMusicList = data
+                })
+            },
+            goToMusicList(item){
+                const {id,name,picUrl,playCount} = {...item}
+                this.$router.push({
+                    path:MUSIC_LIST,
+                    query:{id,name,picUrl,playCount}
                 })
             }
         },

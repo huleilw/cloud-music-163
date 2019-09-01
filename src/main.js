@@ -7,9 +7,16 @@ import VueAxios from 'vue-axios'
 import 'amfe-flexible';
 import QS from 'qs'
 
-import { Search, Icon, Image, Row, Col} from 'vant';
+import {
+  Search,
+  Icon,
+  Image,
+  Row,
+  Col,
+  NavBar
+} from 'vant';
 
-Vue.use(Search).use(Icon).use(Image).use(Row).use(Col)
+Vue.use(Search).use(Icon).use(Image).use(Row).use(Col).use(NavBar)
 
 //重置样式
 import '@/assets/css/reset.css'

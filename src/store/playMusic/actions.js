@@ -7,8 +7,7 @@ export default {
     async fetchRecommendMusic({commit}){
         let resp = await Vue.axios.get(recommendMusic)
         const data = resp.data.result
-        const id = data.map(it=>it.id)[1]
-        commit('updateSongSheetId',id)
+        commit('updateSongList',data)
         return data
     },
     async fetchPlaylistDetail({commit},id){

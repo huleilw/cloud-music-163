@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="app">
-    <router-view></router-view>
+    <keep-alive><router-view></router-view></keep-alive>
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o" to="/">发现</van-tabbar-item>
       <van-tabbar-item icon="play-circle-o" to="/video">视频</van-tabbar-item>
